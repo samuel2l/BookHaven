@@ -32,11 +32,11 @@ app.get('/books',async (req,res)=>{
 
 })
 
-<!-- // name:{
-    // price:{
-    // author:{
-    // genre:{
-    // stock:{ -->
+   // name
+    // price
+    // author
+    // genre
+    // stock 
 
 app.post('/books',async (req,res)=>{
     const {name,price,genre,author,stock}=req.body
@@ -65,6 +65,21 @@ app.get('/books/:id',async (req,res)=>{
     res.render('book_details.ejs',{book:book[0]})
 
 })
+app.get('/books/:genre/filter', async (req, res) => {
+    try {
+        const genre = req.params.genre;
+
+        const books = await Book.find({ genre: genre });
+        console.log('NEW ROUTEEEE');
+        console.log(books);
+
+        res.render('filter_by_genre.ejs',{books,genre})
+    } catch (error) {
+        console.error('Error fetching books:', error);
+        res.status(500).send('An error occurred while fetching books.');
+    }
+})
+
 app.get('/books/:id/edit',async(req,res)=>{
     const id=req.params.id
     const book=await Book.find({_id:id})
