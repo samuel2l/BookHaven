@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Books - Filter by Genre</title>
+    <title>Books - Filter by Name</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 </head>
@@ -11,7 +11,7 @@
     <div class="container mx-auto px-4 py-8">
         <!-- Page Header -->
         <header class="mb-8">
-            <h1 class="text-2xl font-bold text-gray-800">Books in Genre: <span class="text-blue-600"><%= genre %></span></h1>
+            <h1 class="text-2xl font-bold text-gray-800">Books matching name: <span class="text-blue-600"><%= name %></span></h1>
         </header>
 
         <!-- Books List -->
@@ -42,6 +42,13 @@
             </div>
             <% }); %>
         </div>
+
+        <!-- If no books found -->
+        <% if (books.length === 0) { %>
+        <div class="mt-8 text-center">
+            <p class="text-lg text-gray-600">No books found with the name "<%= name %>".</p>
+        </div>
+        <% } %>
     </div>
 </body>
 </html>

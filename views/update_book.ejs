@@ -3,17 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Update Book</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 </head>
-<body>
-    <form method="POST" action="/books/<%=id%>/?_method=PATCH" >
-        <input type="text" value="<%= book.name %>" name="name">
-        <input type="number" value="<%= book.price %>" name="price">
-        <input type="text" value="<%= book.genre %>" name="genre">
-        <input type="number" value="<%= book.stock %>" name="stock">
+<body class="bg-gray-100 flex justify-center items-center min-h-screen">
+    <form method="POST" action="/books/<%= id %>/?_method=PATCH" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <input 
+            type="text" 
+            value="<%= book.name %>" 
+            name="name" 
+            class="w-full mb-4 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+        <input 
+            type="number" 
+            value="<%= book.price %>" 
+            name="price" 
+            class="w-full mb-4 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
 
-        <button type="submit">Edit Book</button>
+        <select 
+            id="genre" 
+            name="genre" 
+            multiple 
+            required 
+            class="w-full mb-4 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+            <option value="Action" <%= book.genre.includes('Action') ? 'selected' : '' %>>Action</option>
+            <option value="Comedy" <%= book.genre.includes('Comedy') ? 'selected' : '' %>>Comedy</option>
+            <option value="Drama" <%= book.genre.includes('Drama') ? 'selected' : '' %>>Drama</option>
+            <option value="Horror" <%= book.genre.includes('Horror') ? 'selected' : '' %>>Horror</option>
+            <option value="Sci-Fi" <%= book.genre.includes('Sci-Fi') ? 'selected' : '' %>>Sci-Fi</option>
+            <option value="Fantasy" <%= book.genre.includes('Fantasy') ? 'selected' : '' %>>Fantasy</option>
+            <option value="Thriller" <%= book.genre.includes('Thriller') ? 'selected' : '' %>>Thriller</option>
+            <option value="Romance" <%= book.genre.includes('Romance') ? 'selected' : '' %>>Romance</option>
+            <option value="Documentary" <%= book.genre.includes('Documentary') ? 'selected' : '' %>>Documentary</option>
+        </select>
+
+        <input 
+            type="number" 
+            value="<%= book.stock %>" 
+            name="stock" 
+            class="w-full mb-4 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+
+        <button 
+            type="submit" 
+            class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+            Edit Book
+        </button>
     </form>
-    
 </body>
 </html>

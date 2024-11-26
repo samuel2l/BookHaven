@@ -4,21 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 </head>
-<body>
-    <!-- // name:{
-        // price:{
-        // author:{
-        // genre:{
-        // stock:{ -->
-    
-    <form action="/books" method="POST">
-        <input type="text" placeholder="enter book name" name="name">
-        <input type="number" placeholder="enter price" name="price">
-        <input type="text" placeholder="enter genre" name="genre">
-        <input type="text" placeholder="enter author" name="author">
-        <input type="number" placeholder="enter current stock" name="stock">
-<button type="submit">submit</button>
+<body class="bg-gray-100 flex justify-center items-center min-h-screen">
+
+    <form action="/books" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <input 
+            type="text" 
+            placeholder="Enter book name" 
+            name="name" 
+            class="w-full mb-4 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+        <input 
+            type="number" 
+            placeholder="Enter price" 
+            name="price" 
+            class="w-full mb-4 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+        <input 
+            type="text" 
+            placeholder="Enter stock" 
+            name="stock" 
+            class="w-full mb-4 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+        <input 
+            type="text" 
+            placeholder="Enter author" 
+            name="author" 
+            class="w-full mb-4 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+        <select 
+            id="genre" 
+            name="genre" 
+            multiple 
+            required 
+            class="w-full mb-4 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+            <option value="Action">Action</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Drama">Drama</option>
+            <option value="Horror">Horror</option>
+            <option value="Sci-Fi">Sci-Fi</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Thriller">Thriller</option>
+            <option value="Romance">Romance</option>
+            <option value="Documentary">Documentary</option>
+        </select>
+        <button 
+            type="submit" 
+            class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+            Submit
+        </button>
     </form>
     
 </body>
