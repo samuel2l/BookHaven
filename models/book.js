@@ -29,6 +29,7 @@ const bookSchema=mongoose.Schema({
                 "Sci-Fi",
                 "Thriller",
                 "Animation",
+                "Documentary"
               ].includes(genre));
           },
 

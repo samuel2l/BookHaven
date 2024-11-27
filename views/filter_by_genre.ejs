@@ -9,38 +9,40 @@
 </head>
 <body class="bg-gray-100 min-h-screen">
     <div class="container mx-auto px-4 py-8">
-        <!-- Page Header -->
         <header class="mb-8">
-            <h1 class="text-2xl font-bold text-gray-800">Books in Genre: <span class="text-blue-600"><%= genre %></span></h1>
+            <h1 class="text-2xl font-bold text-gray-800">
+                Books of the genre(s): 
+                <span class="text-blue-600"><%= genre %></span>
+            </h1>
         </header>
 
-        <!-- Books List -->
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <% books.forEach(book => { %>
-            <div class="bg-white shadow-md rounded-lg p-4">
-                <h2 class="text-xl font-semibold text-gray-800 mb-2">
-                    <a href="/books/<%= book._id %>" class="text-blue-600 hover:underline">
-                        <%= book.name %>
-                    </a>
-                </h2>
-                <p class="text-gray-600 mb-4">
-                    <strong>Price:</strong> $<%= Number(book.price).toFixed(2) %>
-                </p>
-                <div class="flex justify-between items-center">
-                    <!-- Update Link -->
-                    <a href="/books/<%= book._id %>/edit" 
-                       class="text-sm text-blue-600 hover:underline">
-                        <i class="fas fa-edit mr-1"></i> Update Book
-                    </a>
-                    
-                    <!-- View Details Button -->
-                    <a href="/books/<%= book._id %>" 
-                       class="inline-flex items-center px-3 py-2 bg-blue-500 text-white text-sm rounded-lg hover:bg-blue-600 transition">
-                        <i class="fas fa-info-circle mr-2"></i> View Details
-                    </a>
-                </div>
-            </div>
-            <% }); %>
+            <% if (books.length > 0) { %>
+                <% books.forEach(book => { %>
+                    <div class="bg-white shadow-md rounded-lg p-4">
+                        <h2 class="text-xl font-semibold text-gray-800 mb-2">
+                            <a href="/books/<%= book._id %>" class="text-blue-600 hover:underline">
+                                <%= book.name %>
+                            </a>
+                        </h2>
+                        <p class="text-gray-600 mb-4">
+                            <strong>Price:</strong> $<%= Number(book.price).toFixed(2) %>
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <a href="/books/<%= book._id %>/edit" 
+                               class="text-sm text-blue-600 hover:underline">
+                                <i class="fas fa-edit mr-1"></i> Update Book
+                            </a>
+                            <a href="/books/<%= book._id %>" 
+                               class="inline-flex items-center px-3 py-2 bg-blue-500 text-white text-sm rounded-lg hover:bg-blue-600 transition">
+                                <i class="fas fa-info-circle mr-2"></i> View Details
+                            </a>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p class="text-gray-600">No books found for the selected genre(s).</p>
+            <% } %>
         </div>
     </div>
 </body>

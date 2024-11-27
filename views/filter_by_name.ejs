@@ -9,12 +9,9 @@
 </head>
 <body class="bg-gray-100 min-h-screen">
     <div class="container mx-auto px-4 py-8">
-        <!-- Page Header -->
         <header class="mb-8">
             <h1 class="text-2xl font-bold text-gray-800">Books matching name: <span class="text-blue-600"><%= name %></span></h1>
         </header>
-
-        <!-- Books List -->
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <% books.forEach(book => { %>
             <div class="bg-white shadow-md rounded-lg p-4">
@@ -27,13 +24,11 @@
                     <strong>Price:</strong> $<%= Number(book.price).toFixed(2) %>
                 </p>
                 <div class="flex justify-between items-center">
-                    <!-- Update Link -->
                     <a href="/books/<%= book._id %>/edit" 
                        class="text-sm text-blue-600 hover:underline">
                         <i class="fas fa-edit mr-1"></i> Update Book
                     </a>
                     
-                    <!-- View Details Button -->
                     <a href="/books/<%= book._id %>" 
                        class="inline-flex items-center px-3 py-2 bg-blue-500 text-white text-sm rounded-lg hover:bg-blue-600 transition">
                         <i class="fas fa-info-circle mr-2"></i> View Details
@@ -43,7 +38,6 @@
             <% }); %>
         </div>
 
-        <!-- If no books found -->
         <% if (books.length === 0) { %>
         <div class="mt-8 text-center">
             <p class="text-lg text-gray-600">No books found with the name "<%= name %>".</p>
