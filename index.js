@@ -26,10 +26,10 @@ app.get("/books/new", (req, res) => {
 app.get("/books", async (req, res) => {
   try {
     const books = await Book.find()
-    const allGenres = await Book.distinct("genre")
-    res.render("books.ejs", { books, genres: allGenres, selectedGenres: [] })
+    // const allGenres = await Book.distinct("genre")
+    res.render("books.ejs", { books, genres: [], selectedGenres: [] })
   } catch (err) {
-    next(err)
+    // next(err)
   }
 })
 
