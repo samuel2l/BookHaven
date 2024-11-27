@@ -24,13 +24,22 @@
                     <div class="flex justify-between items-start">
                         <div>
                             <h2 class="text-2xl font-bold text-gray-800 mb-2"><%= book.name %></h2>
+                            <!-- Display Author Name -->
+                            <p class="text-sm text-gray-600">By: <%= book.author %></p>
                         </div>
                         <div class="text-right">
                             <p class="text-2xl font-bold text-green-600">$<%= Number(book.price).toFixed(2) %></p>
                         </div>
                     </div>
                 </div>
+                <!-- Display Book Description -->
                 <div class="p-6 space-y-4">
+                    <div>
+                        <h3 class="text-sm font-medium text-gray-500 mb-1">Description</h3>
+                        <p class="text-gray-700">
+                            <%= book.description %>
+                        </p>
+                    </div>
                     <div class="space-y-4">
                         <div>
                             <h3 class="text-sm font-medium text-gray-500 mb-1">Genres</h3>

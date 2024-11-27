@@ -34,20 +34,18 @@ app.get("/books", async (req, res) => {
 })
 
 app.post("/books", async (req, res) => {
-  const { name, price, genre, author, stock } = req.body
+  try {const { name, price, genre, author, stock,description } = req.body
   print(genre)
-  const newBook = new Book({ name, price, genre, author, stock })
-  newBook
-    .save()
-    .then((res) => {
-      print(res)
-      print("saved the shit")
-    })
-    .catch((e) => {
-      print(e)
-    })
-
+  let newBook = new Book({ name, price, genre, author, stock,description })
+  newBook=await newBook.save()
   res.redirect("/books")
+  
+}catch(err){
+    next(err)
+}
+
+
+
 })
 
 app.get("/books/:id", async (req, res, next) => {
