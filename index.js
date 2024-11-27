@@ -6,12 +6,13 @@ const Book = require("./models/book")
 const print = console.log
 const methodOverride = require("method-override")
 app.use(methodOverride("_method"))
-
+require("dotenv").config()
 app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"))
 app.use(express.urlencoded({ extended: true }))
 async function main() {
-  await mongoose.connect("mongodb://127.0.0.1:27017/booksApp")
+
+  await mongoose.connect(process.env.CONNECTION_STRING)
 }
 main()
   .then(() => {
@@ -19,22 +20,23 @@ main()
   })
   .catch((err) => console.log(err))
 
+
 app.get("/books/new", (req, res) => {
   res.render("add_book.ejs")
 })
 
-app.get("/books", async (req, res) => {
+app.get("/books", async (req, res,next) => {
   try {
+    
     const books = await Book.find()
-    // const allGenres = await Book.distinct("genre")
-    // res.render("books.ejs", { books, genres: [], selectedGenres: [] })
-    res.send('rgergfewrgergergergregregr')
+    const allGenres = await Book.distinct("genre")
+    res.render("books.ejs", { books, genres: allGenres, selectedGenres: [] })
   } catch (err) {
-    // next(err)
+    next(err)
   }
 })
 
-app.post("/books", async (req, res) => {
+app.post("/books", async (req, res,next) => {
   try {const { name, price, genre, author, stock,description } = req.body
   print(genre)
   let newBook = new Book({ name, price, genre, author, stock,description })
@@ -61,7 +63,7 @@ app.get("/books/:id", async (req, res, next) => {
   }
 })
 
-app.get("/books/genre/filter", async (req, res) => {
+app.get("/books/genre/filter", async (req, res,next) => {
   try {
     const { genres } = req.query
     print(genres)
@@ -78,13 +80,13 @@ app.get("/books/genre/filter", async (req, res) => {
 
     res.render("filter_by_genre.ejs", { books, genre: genreDisplay })
   } catch (err) {
-    next(e)
-    next(error)
+    next(err)
+    next(err)
   }
 })
 
 
-app.get('/books/author/filter', async (req, res) => {
+app.get('/books/author/filter', async (req, res,next) => {
     try {
         const { author } = req.query;
 
@@ -93,11 +95,11 @@ app.get('/books/author/filter', async (req, res) => {
 
         res.render('filter_by_author.ejs', { books, author });
     } catch (err) {
-        next(e)
+        next(err)
     }
 });
 
-app.get('/books/name/filter', async (req, res) => {
+app.get('/books/name/filter', async (req, res,next) => {
     try {
         const { name } = req.query;
 
@@ -105,7 +107,7 @@ app.get('/books/name/filter', async (req, res) => {
 
         res.render('filter_by_name.ejs', { books, name });
     } catch (err) {
-        next(e)
+        next(err)
 
     }
 });
@@ -121,7 +123,7 @@ app.get("/books/:id/edit", async (req, res) => {
   }
 })
 
-app.patch("/books/:id", async (req, res) => {
+app.patch("/books/:id", async (req, res,next) => {
   try {
     const id = req.params.id
 
@@ -136,7 +138,7 @@ app.patch("/books/:id", async (req, res) => {
   }
 })
 
-app.delete("/books/:id", async (req, res) => {
+app.delete("/books/:id", async (req, res,next) => {
   try {
     const id = req.params.id
 

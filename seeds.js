@@ -2,8 +2,9 @@
 const Book=require('./models/book')
 const mongoose=require('mongoose')
 const print=console.log
+require("dotenv").config()
 async function main() {
-    await mongoose.connect('mongodb://127.0.0.1:27017/booksApp');
+    await mongoose.connect(process.env.CONNECTION_STRING);
   }
   main().then(()=>{
       print('connection sauce')
