@@ -26,14 +26,15 @@ app.get("/books/new", (req, res) => {
 })
 
 app.get("/books", async (req, res,next) => {
-  try {
+  // try {
     
-    const books = await Book.find()
-    const allGenres = await Book.distinct("genre")
-    res.render("books.ejs", { books, genres: allGenres, selectedGenres: [] })
-  } catch (err) {
-    next(err)
-  }
+  //   const books = await Book.find()
+  //   const allGenres = await Book.distinct("genre")
+  //   res.render("books.ejs", { books, genres: allGenres, selectedGenres: [] })
+  // } catch (err) {
+  //   next(err)
+  // }
+  res.send('e jgoerg erfglnier')
 })
 
 app.post("/books", async (req, res,next) => {
